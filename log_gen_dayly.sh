@@ -1,9 +1,12 @@
 #!/bin/sh
 
 HOST="14.14.14"
+folder="/tmp/myLanScan/"
+hostFile="$folder""myhost.txt"
+HOST=`cat $hostFile`
 FILENAME=$(date +%Y%m%d_) #该文件这里去掉小时数，所以不是完整的文件路径
-FILEPATH="/tmp/"$FILENAME
-LOG_PATH="/tmp/"$(date +%Y%m%d)"_log" #这里的输出log位置和按小时输出的log位置是同一个文件
+FILEPATH="$folder"$FILENAME
+LOG_PATH="$folder"$(date +%Y%m%d)"_log" #这里的输出log位置和按小时输出的log位置是同一个文件
 echo log path is $LOG_PATH
 
 current=1

@@ -1,9 +1,12 @@
 #!/bin/sh
 
 HOST="14.14.14"
+folder="/tmp/myLanScan/"
+hostFile="$folder""myhost.txt"
+HOST=`cat $hostFile`
 FILENAME=$(date +%Y%m%d_%H)
-FILEPATH="/tmp/"$FILENAME
-LOG_PATH="/tmp/"$(date +%Y%m%d)"_log"
+FILEPATH="$folder"$FILENAME
+LOG_PATH="$folder"$(date +%Y%m%d)"_log"
 echo log path is $LOG_PATH
 
 current=1

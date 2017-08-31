@@ -1,13 +1,39 @@
 #!/bin/sh
 
 HOST="14.14.14"
+folder="/tmp/myLanScan/"
+hostFile="$folder""myhost.txt"
+if [ ! -d "$folder" ]; then
+	mkdir "$folder"
+fi
+while getopts "h:bc" arg #选项后面的冒号表示该选项需要参数
+do
+        case $arg in
+             h)
+				echo 'host ip is' $OPTARG
+				HOST=$OPTARG
+				echo $HOST > "$hostFile"
+                ;;
+             b)
+                
+                ;;
+             c)
+               
+                ;;
+             ?) #当有不认识的选项的时候arg为?
+            echo "请使用-h参数指定网段"
+        exit 1
+        ;;
+        esac
+done
+
 echo start scan
 
 while [ 1 -lt 2 ]
 do
 
 FILENAME=$(date +%Y%m%d_%H)
-FILEPATH="/tmp/"$FILENAME
+FILEPATH="$folder"$FILENAME
 echo $FILEPATH
 TOTAL=0
 IP_LIST=""
@@ -31,4 +57,5 @@ done
 echo -e all IPs is $IP_LIST
 
 done
+
 
