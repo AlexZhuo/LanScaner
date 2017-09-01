@@ -33,10 +33,13 @@ while [ 1 -lt 2 ]
 do
 
 FILENAME=$(date +%Y%m%d_%H)
+FREENAME="free_"$(date +%Y%m%d_%H)
 FILEPATH="$folder"$FILENAME
+FREEPATH="$folder"$FREENAME
 echo $FILEPATH
 TOTAL=0
 IP_LIST=""
+FREE_LIST=""
 
 current=1
 until [ $current -eq 255 ]
@@ -50,12 +53,16 @@ do
 		echo  $HOST.$current >> $FILEPATH
 		IP_LIST=$IP_LIST"\n"$HOST.$current
 	else
+		[ ! -f "$FREEPATH" ] && echo "" > $FREEPATH
+		echo  $HOST.$current >> $FREEPATH
+		FREE_LIST=$FREE_LIST"\n"$HOST.$current
 		echo $HOST.$current  is offline
+		
 	fi
 	current=$((current+1))
 done
-echo -e all IPs is $IP_LIST
-
+echo -e all engaged IPs is $IP_LIST
+echo -e all free IPs is $FREE_LIST
 done
 
 
